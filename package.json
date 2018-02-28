@@ -1,0 +1,38 @@
+{
+  "name": "jury.online",
+  "version": "1.0.0",
+  "description": "Jury.online landing markup.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ned4ded/jury.online.git"
+  },
+  "author": "Bazhenov Eugen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ned4ded/jury.online/issues"
+  },
+  "homepage": "https://github.com/ned4ded/jury.online#readme",
+  "dependencies": {
+    "autoprefixer": "^7.1.6",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-css-url-adjuster": "^0.2.3",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-hb": "^7.0.1",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "import-resolve": "^0.4.0",
+    "postcss-scss": "^1.0.2"
+  }
+}
