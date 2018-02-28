@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="icon-back" viewBox="0 0 36 36">
+    <path d="M478,910v12h8v-4h-4v-8h-4Zm14.722-2.722a17.989,17.989,0,0,0-26.412,1.032L462,904v12h12l-4.846-4.846a14.006,14.006,0,1,1,.954,18.738l-2.825,2.825A17.988,17.988,0,1,0,492.722,907.278Z" transform="translate(-462 -902)"/>
+  </symbol>
+
+  <symbol id="icon-clear" viewBox="0 0 36 36">
+    <path d="M1008,148H996l4.85-4.846a14.009,14.009,0,1,0-.959,18.738l2.829,2.825a17.989,17.989,0,1,1,.97-24.407L1008,136v12Z" transform="translate(-972 -134)"/>
+  </symbol>
+
+  <symbol id="icon-save" viewBox="0 0 36 26">
+    <path d="M986.473,293.005L974,280.707l2.842-2.8,9.631,9.5,20.687-20.392,2.84,2.8Z" transform="translate(-974 -267)"/>
+  </symbol>
+</svg>

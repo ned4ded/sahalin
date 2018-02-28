@@ -1,0 +1,30 @@
+.frame {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  border: 4px solid $main-color-light;
+  border-top-width: 24px;
+  border-top-color: $main-color-dark;
+  border-bottom-width: 20px;
+  border-image: linear-gradient(-90deg, $main-color-light 0%, $main-color-dark 100%) 25 25 round;
+  background: white linear-gradient(90deg, rgb(240, 240, 240) 0%, rgb(225, 225, 225) 100%);
+  box-shadow: inset 0 0 8px 5px rgb(255, 255, 255);
+
+  &:before {
+    position: absolute;
+    top: -24px;
+    left: -4px;
+
+    display: block;
+
+    width: calc(100% + 6px);
+    height: calc(100% + 42px);
+
+    content: '';
+
+    border: 1px solid rgba( $hg-color, .3);
+    box-shadow: 0 0 10px 2px rgba( $hg-color, 0.1);
+  }
+}

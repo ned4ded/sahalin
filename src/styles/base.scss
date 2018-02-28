@@ -1,1 +1,29 @@
-.test {}
+@import './variables.scss';
+
+body {
+  box-sizing: border-box;
+
+  & * {
+    box-sizing: border-box;
+  }
+}
+
+@import 'pages/index/base.scss';
+
+.interface {
+  position: relative;
+
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  padding: 25px 15px;
+
+  display: flex;
+  flex-flow:row;
+  background: $main-color-light linear-gradient(135deg, $main-color-light 0%, $main-color-dark 100%);
+
+  &__item {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

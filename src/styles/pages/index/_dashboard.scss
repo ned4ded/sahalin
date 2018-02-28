@@ -1,0 +1,62 @@
+.dashboard {
+  display: flex;
+  flex-flow: column nowrap;
+
+  min-width: 80px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  &__item {
+    position: relative;
+
+    text-align: center;
+    &:not(:first-of-type) {
+      margin-top: 30px;
+    }
+  }
+
+  &__btn {
+    z-index: 0;
+
+    padding: 32px 0 10px;
+
+    color: $text-color;
+    border: none;
+    background-color: transparent;
+
+    font-size: $md-fz;
+
+    &:active:not(:disabled) {
+      color: $hg-color;
+
+      & ~ .dashboard__icon {
+        fill: $hg-color;
+      }
+    }
+
+    &:disabled {
+      color: $text-color-dimed;
+
+      & ~ .dashboard__icon {
+        fill: $text-color-dimed;
+      }
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 50%;
+
+    width: 30px;
+    height: 30px;
+
+    transform: translateX(-50%);
+
+    fill: $text-color;
+  }
+}

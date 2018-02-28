@@ -1,9 +1,5 @@
-'use strict';
-
-(function () {
-  var $ = function $(id) {
-    return document.getElementById(id);
-  };
+(function() {
+  var $ = function(id){return document.getElementById(id)};
 
   var canvas = new fabric.Canvas('canvas', {
     isDrawingMode: true
@@ -13,7 +9,7 @@
 
   window.addEventListener('resize', resizeCanvas, false);
 
-  var frame = $('frame');
+  const frame = $('frame');
 
   function resizeCanvas() {
     canvas.setHeight(frame.clientHeight);
@@ -31,15 +27,13 @@
       drawingShadowWidth = $('drawing-shadow-width'),
       drawingShadowOffset = $('drawing-shadow-offset'),
       clearEl = $('clear');
-  save = $('save');
+      save = $('save');
 
-  clearEl.onclick = function () {
-    canvas.clear();
-  };
+  clearEl.onclick = function() { canvas.clear() };
   save.onclick = function convertToImagen() {
     // canvas.deactivateAll().renderAll();
     window.open(canvas.toDataURL('png'));
-  };
+  }
 
   // drawingModeEl.onclick = function() {
   //   canvas.isDrawingMode = !canvas.isDrawingMode;
@@ -55,7 +49,7 @@
 
   if (fabric.PatternBrush) {
     var vLinePatternBrush = new fabric.PatternBrush(canvas);
-    vLinePatternBrush.getPatternSrc = function () {
+    vLinePatternBrush.getPatternSrc = function() {
 
       var patternCanvas = fabric.document.createElement('canvas');
       patternCanvas.width = patternCanvas.height = 10;
@@ -197,7 +191,7 @@
       offsetX: 0,
       offsetY: 0,
       affectStroke: true,
-      color: '#005E7A'
+      color: '#005E7A',
     });
   }
 })();
