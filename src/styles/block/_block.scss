@@ -1,0 +1,42 @@
+.block {
+  $br : 2px;
+
+  position: relative;
+
+  width: 100%;
+  padding: 25px 50px;
+
+  font-family: $font-roboto;
+  font-size: $sm-fz;
+  color: $text-color;
+  border-radius: $br;
+  background: $semi-color-light linear-gradient(90deg, $semi-color-light 30%, $semi-color-dark 130%);
+
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    display: block;
+
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+
+    content: '';
+
+    border: 1px solid rgba(lighten($semi-color-light, 70%), .15);
+    border-radius: $br;
+  }
+
+  &__heading {
+    font-family: $font-os;
+    font-size: $lg-fz;
+  }
+
+  &__btn {
+    margin-top: 20px;
+
+  }
+
+}

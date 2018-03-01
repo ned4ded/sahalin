@@ -14,6 +14,7 @@
   window.addEventListener('resize', resizeCanvas, false);
 
   var frame = $('frame');
+  var popup = $('popup');
 
   function resizeCanvas() {
     canvas.setHeight(frame.clientHeight);
@@ -37,8 +38,45 @@
     canvas.clear();
   };
   save.onclick = function convertToImagen() {
-    // canvas.deactivateAll().renderAll();
-    window.open(canvas.toDataURL('png'));
+    save.setAttribute('disabled', true);
+    var close = $('close');
+
+    var curtain = document.getElementById('curtain');
+    var anDelay = 10000;
+    var anDur = 500;
+    var restartCanvas = function restartCanvas() {
+
+      close.onclick = function () {
+        anTimer('out');
+        return setTimeout(function () {
+          curtain.classList.remove("anim");
+          canvas.clear();
+          save.removeAttribute('disabled');
+        }, anDur);
+      };
+    };
+
+    var anTimer = function anTimer(cls) {
+      curtain.classList.add(cls);
+      var state = popup.getAttribute('data-shown') == 'true' ? false : true;
+      popup.setAttribute('data-shown', state);
+
+      setTimeout(function () {
+        curtain.classList.remove(cls);
+      }, anDur);
+    };
+
+    curtain.classList.add("anim");
+    anTimer('in');
+    setTimeout(function () {
+      return window.open(canvas.toDataURL('png'), '_blank');
+    }, anDur);
+
+    restartCanvas();
+
+    setTimeout(function () {
+      close.click();
+    }, anDelay);
   };
 
   // drawingModeEl.onclick = function() {

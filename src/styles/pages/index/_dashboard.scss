@@ -27,7 +27,8 @@
     border: none;
     background-color: transparent;
 
-    font-size: $md-fz;
+    font-size: $sm-fz;
+    font-family: $font-roboto;
 
     &:active:not(:disabled) {
       color: $hg-color;

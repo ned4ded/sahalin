@@ -27,4 +27,76 @@
     border: 1px solid rgba( $hg-color, .3);
     box-shadow: 0 0 10px 2px rgba( $hg-color, 0.1);
   }
+
+  &__curtain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 1;
+
+    @keyframes in {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+
+    }
+
+    &.anim {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle farthest-corner at 30% 70%, rgba(lighten($main-color-dark, 30%), 0.9), rgba($main-color-light, 0.9));
+
+      &.in {
+        animation-name: in;
+        animation-duration: .5s;
+        animation-fill-mode: forwards;
+      }
+
+      &.out {
+        animation-name: in;
+        animation-duration: .5s;
+        animation-fill-mode: forwards;
+        animation-direction: reverse;
+      }
+    }
+  }
+
+  &__popup {
+    @keyframes appearance {
+      0% {
+        display: none;
+        opacity: 0;
+      }
+
+      1% {
+        display: block;
+        opacity: 0;
+      }
+
+      100% {
+        display: block;
+        opacity: 1;
+      }
+    }
+
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    z-index: 2;
+    opacity: 1;
+
+    &[data-shown="true"] {
+      display: block;
+      animation-name: appearance;
+      animation-duration: .5s;
+    }
+  }
 }

@@ -1,3 +1,4 @@
+@import './fonts.scss';
 @import './variables.scss';
 
 body {
@@ -9,6 +10,9 @@ body {
 }
 
 @import 'pages/index/base.scss';
+
+@import './block/block.scss';
+@import './block/popup.scss';
 
 .interface {
   position: relative;
@@ -25,5 +29,34 @@ body {
   &__item {
     margin-left: 10px;
     margin-right: 10px;
+  }
+}
+
+.btn {
+  display: inline-block;
+
+  min-width: 125px;
+  padding: 7px 25px;
+
+  color: $text-color-dimed;
+  border: none;
+  background-color: rgba($main-color-light, .5);
+
+  font-family: $font-roboto;
+  font-size: $md-fz;
+  border: 1px solid rgba(lighten($main-color-light, 70%), .15);
+  box-shadow: 0 3px 10px -3px rgba($main-color-dark, .7);
+  transition: all .1s ease-in;
+
+  &:hover {
+    background-color: rgba($main-color-light, .8);
+    border: 1px solid rgba(lighten($main-color-light, 70%), .3);
+  }
+
+  &:active {
+    background-color: rgba($main-color-light, .8);
+    border: 1px solid rgba($hg-color, .6);
+    color: $hg-color;
+    box-shadow: 0 0 10px -3px rgba($main-color-dark, .7);
   }
 }

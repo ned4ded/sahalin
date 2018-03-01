@@ -10,6 +10,7 @@
   window.addEventListener('resize', resizeCanvas, false);
 
   const frame = $('frame');
+  const popup = $('popup');
 
   function resizeCanvas() {
     canvas.setHeight(frame.clientHeight);
@@ -29,10 +30,47 @@
       clearEl = $('clear');
       save = $('save');
 
+
   clearEl.onclick = function() { canvas.clear() };
   save.onclick = function convertToImagen() {
-    // canvas.deactivateAll().renderAll();
-    window.open(canvas.toDataURL('png'));
+    save.setAttribute('disabled', true);
+    const close = $('close');
+
+
+    const curtain = document.getElementById('curtain');
+    const anDelay = 10000;
+    const anDur = 500;
+    const restartCanvas = () => {
+
+      close.onclick = () => {
+        anTimer('out');
+        return setTimeout(() => {
+          curtain.classList.remove("anim");
+          canvas.clear();
+          save.removeAttribute('disabled');
+        }, anDur);
+      }
+    };
+
+    const anTimer = cls => {
+      curtain.classList.add(cls);
+      const state = popup.getAttribute('data-shown') == 'true' ? false : true;
+      popup.setAttribute('data-shown', state);
+
+      setTimeout(() => {
+        curtain.classList.remove(cls);
+      }, anDur);
+    };
+
+    curtain.classList.add("anim");
+    anTimer('in');
+    setTimeout(() => window.open(canvas.toDataURL('png'), '_blank'), anDur);
+
+    restartCanvas();
+
+    setTimeout(function () {
+      close.click();
+    }, anDelay);
   }
 
   // drawingModeEl.onclick = function() {

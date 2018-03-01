@@ -8,6 +8,16 @@
   </symbol>
 
   <symbol id="icon-save" viewBox="0 0 36 26">
-    <path d="M986.473,293.005L974,280.707l2.842-2.8,9.631,9.5,20.687-20.392,2.84,2.8Z" transform="translate(-974 -267)"/>
+    <path style="stroke-dashoffset: 423.235; stroke-dasharray: 211.617, 211.617, 26;" d="M986.473,293.005L974,280.707l2.842-2.8,9.631,9.5,20.687-20.392,2.84,2.8Z" transform="translate(-974 -267)"/>
   </symbol>
+
+  <g id="curtain-blur" preserveaspectratio="none" viewbox="0 0 100 100">
+    <defs>
+      <filter id="blur" x="0" y="0">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+      </filter>
+    </defs>
+
+     <polygon filter="url(#inset-shadow)" style="" points="0,0 100,0 100,100 0,100"></polygon>
+  </g>
 </svg>
