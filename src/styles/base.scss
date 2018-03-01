@@ -8,11 +8,12 @@ body {
     box-sizing: border-box;
   }
 }
-
-@import 'pages/index/base.scss';
-
 @import './block/block.scss';
 @import './block/popup.scss';
+@import './block/display.scss';
+
+@import 'pages/index/base.scss';
+@import 'pages/login/base.scss';
 
 .interface {
   position: relative;
@@ -24,7 +25,7 @@ body {
 
   display: flex;
   flex-flow:row;
-  background: $main-color-light linear-gradient(135deg, $main-color-light 0%, $main-color-dark 100%);
+  background: $main-color-light linear-gradient(135deg, $main-color-light 0%, $main-color-dark 100%) no-repeat;
 
   &__item {
     margin-left: 10px;
@@ -47,6 +48,10 @@ body {
   border: 1px solid rgba(lighten($main-color-light, 70%), .15);
   box-shadow: 0 3px 10px -3px rgba($main-color-dark, .7);
   transition: all .1s ease-in;
+
+  &:focus {
+    outline: none;
+  }
 
   &:hover {
     background-color: rgba($main-color-light, .8);

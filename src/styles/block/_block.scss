@@ -11,23 +11,7 @@
   color: $text-color;
   border-radius: $br;
   background: $semi-color-light linear-gradient(90deg, $semi-color-light 30%, $semi-color-dark 130%);
-
-  &:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-
-    display: block;
-
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-
-    content: '';
-
-    border: 1px solid rgba(lighten($semi-color-light, 70%), .15);
-    border-radius: $br;
-  }
+  border: 1px solid rgba(lighten($semi-color-light, 70%), .10);
 
   &__heading {
     font-family: $font-os;
@@ -36,7 +20,6 @@
 
   &__btn {
     margin-top: 20px;
-
   }
 
 }

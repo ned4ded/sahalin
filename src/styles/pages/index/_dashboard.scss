@@ -30,6 +30,10 @@
     font-size: $sm-fz;
     font-family: $font-roboto;
 
+    &:focus {
+      outline: none;
+    }
+
     &:active:not(:disabled) {
       color: $hg-color;
 
