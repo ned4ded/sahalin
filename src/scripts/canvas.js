@@ -27,7 +27,7 @@
       drawingLineWidthEl = $('drawing-line-width'),
       drawingShadowWidth = $('drawing-shadow-width'),
       drawingShadowOffset = $('drawing-shadow-offset'),
-      clearEl = $('clear');
+      clearEl = $('clear'),
       save = $('save');
 
 
@@ -41,13 +41,14 @@
     const anDelay = 10000;
     const anDur = 500;
     const restartCanvas = () => {
-
       close.onclick = () => {
         anTimer('out');
         return setTimeout(() => {
           curtain.classList.remove("anim");
           canvas.clear();
           save.removeAttribute('disabled');
+
+          close.onclick = '';
         }, anDur);
       }
     };
@@ -64,12 +65,12 @@
 
     curtain.classList.add("anim");
     anTimer('in');
-    setTimeout(() => window.open(canvas.toDataURL('png'), '_blank'), anDur);
+    setTimeout(() => window.open(canvas.toDataURL('png')), anDur);
 
     restartCanvas();
 
     setTimeout(function () {
-      close.click();
+      if(close.getAttribute('data-shown') == 'false') close.click();
     }, anDelay);
   }
 
