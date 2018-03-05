@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var $ = function $(id) {
+  var _ = function _(id) {
     return document.getElementById(id);
   };
 
@@ -13,8 +13,8 @@
 
   window.addEventListener('resize', resizeCanvas, false);
 
-  var frame = $('frame');
-  var popup = $('popup');
+  var frame = _('frame');
+  var popup = _('popup');
 
   function resizeCanvas() {
     canvas.setHeight(frame.clientHeight);
@@ -24,28 +24,29 @@
 
   resizeCanvas();
 
-  var drawingModeEl = $('drawing-mode'),
-      drawingOptionsEl = $('drawing-mode-options'),
-      drawingColorEl = $('drawing-color'),
-      drawingShadowColorEl = $('drawing-shadow-color'),
-      drawingLineWidthEl = $('drawing-line-width'),
-      drawingShadowWidth = $('drawing-shadow-width'),
-      drawingShadowOffset = $('drawing-shadow-offset'),
-      clearEl = $('clear'),
-      save = $('save');
+  var drawingModeEl = _('drawing-mode'),
+      drawingOptionsEl = _('drawing-mode-options'),
+      drawingColorEl = _('drawing-color'),
+      drawingShadowColorEl = _('drawing-shadow-color'),
+      drawingLineWidthEl = _('drawing-line-width'),
+      drawingShadowWidth = _('drawing-shadow-width'),
+      drawingShadowOffset = _('drawing-shadow-offset'),
+      clearEl = _('clear'),
+      save = _('save');
 
   clearEl.onclick = function () {
     canvas.clear();
   };
   save.onclick = function convertToImagen() {
     save.setAttribute('disabled', true);
-    var close = $('close');
+    var close = _('close');
 
     var curtain = document.getElementById('curtain');
     var anDelay = 10000;
     var anDur = 500;
     var restartCanvas = function restartCanvas() {
       close.onclick = function () {
+
         anTimer('out');
         return setTimeout(function () {
           curtain.classList.remove("anim");
@@ -174,7 +175,7 @@
     // texturePatternBrush.source = img;
   }
 
-  // $('drawing-mode-selector').onchange = function() {
+  // _('drawing-mode-selector').onchange = function() {
   //
   //   if (this.value === 'hline') {
   //     canvas.freeDrawingBrush = vLinePatternBrush;
@@ -240,3 +241,7 @@
     });
   }
 })();
+// (function{
+//   const
+// }())
+"use strict";

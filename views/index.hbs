@@ -1,0 +1,37 @@
+<div class="interface">
+  <ul class="dashboard interface__item">
+    <li class="dashboard__item">
+      <button id="clear" class="dashboard__btn">Очистить</button>
+      <svg class="dashboard__icon">
+        <use href="assets/sprite.svg#icon-clear" />
+      </svg>
+    </li>
+    <li class="dashboard__item">
+      <button class="dashboard__btn" disabled>Назад</button>
+      <svg class="dashboard__icon">
+        <use href="assets/sprite.svg#icon-back" />
+      </svg>
+    </li>
+    <li class="dashboard__item">
+      <button id="save" class="dashboard__btn">Сохранить</button>
+      <svg class="dashboard__icon">
+        <use href="assets/sprite.svg#icon-save" />
+      </svg>
+    </li>
+  </ul>
+
+  <div id="frame" class="frame interface__item">
+    <div id="curtain" class="frame__curtain"></div>
+    <div id="popup" class="block popup frame__popup" data-shown="false">
+      <span class="block__heading">
+        Отлично!
+      </span>
+      <p class="block__message">
+        Изображение успешно сохранено. Нажмите "ОК" чтобы продолжить.
+      </p>
+      <button id="close" class="btn block__btn">ОК</button>
+    </div>
+    <canvas id="canvas" class="canvas"></canvas>
+  </div>
+
+</div>

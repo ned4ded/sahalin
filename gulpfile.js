@@ -21,21 +21,21 @@ const rename = require('gulp-rename');
 const browserSync = require('browser-sync').create();
 
 gulp.task('webserver', ['styles', 'html', 'scripts'], function() {
-  browserSync.init({
-    open: false,
-    ui: false,
-    server: './www',
-    files: './www/index.html',
-    host: '192.168.1.130',
-    port: 3001,
-    reloadOnRestart: true,
-    logConnections: true,
-    ghostMode: false,
-  });
+  // browserSync.init({
+  //   open: false,
+  //   ui: false,
+  //   server: './www',
+  //   files: './www/index.html',
+  //   host: '192.168.1.130',
+  //   port: 3001,
+  //   reloadOnRestart: true,
+  //   logConnections: true,
+  //   ghostMode: false,
+  // });
 
   gulp.watch('./src/styles/**/*.scss', ['styles']);
   gulp.watch('./src/scripts/**/*.js', ['scripts']);
-  gulp.watch('./src/pages/*.html', ['html']);
+  // gulp.watch('./src/pages/*.html', ['html']);
 });
 
 gulp.task('styles', function() {

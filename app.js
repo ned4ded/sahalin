@@ -1,0 +1,74 @@
+const express = require('express');
+const app = express();
+const credentials = require('./config/credentials');
+
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const Store = require('connect-mongo')(session);
+const bodyParser = require('body-parser');
+
+//DB setup
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/sahalin', function (err) {
+   if (err) throw err;
+   console.log('DB Successfully connected');
+});
+mongoose.Promise = global.Promise;
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
+// view engine setup
+const hbs = require('express-handlebars').create({
+  defaultLayout: 'main',
+  extname: '.hbs',
+  helpers: {
+    section: function(name, options) {
+      if(!this._sections) this._sections = {};
+      this._sections[name] = options.fn(this);
+      return null;
+    }
+  }
+});
+
+app.engine('.hbs', hbs.engine);
+app.set('view engine', '.hbs');
+app.set('views', path.join(__dirname, 'views'));
+
+//middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser(credentials.cookieSecret));
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: credentials.cookieSecret,
+  store: new Store({ mongooseConnection: mongoose.connection }),
+}));
+
+//server setup
+app.set('port', process.env.PORT || '3000');
+app.set('host', '192.168.1.130');
+app.use(express.static(path.join(__dirname, 'www')));
+
+// routes
+const index = require('./routes/index');
+const login = require('./routes/login');
+
+app.use('/', index);
+app.use('/login', login);
+
+
+app.use((req, res) => {
+  res.status(404).send('404');
+});
+
+app.use((err, req, res, next) => {
+  res.status(500).send(err.stack);
+});
+
+app.listen(app.get('port'), app.get('host'), () => {
+  console.log(`Express is running on ${app.get('host')}, port: ${app.get('port')}, env: ${app.get('env')}
+Press Ctrl+C to stop;`);
+});

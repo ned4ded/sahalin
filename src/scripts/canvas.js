@@ -1,5 +1,5 @@
 (function() {
-  var $ = function(id){return document.getElementById(id)};
+  var _ = function(id){return document.getElementById(id)};
 
   var canvas = new fabric.Canvas('canvas', {
     isDrawingMode: true
@@ -9,8 +9,8 @@
 
   window.addEventListener('resize', resizeCanvas, false);
 
-  const frame = $('frame');
-  const popup = $('popup');
+  const frame = _('frame');
+  const popup = _('popup');
 
   function resizeCanvas() {
     canvas.setHeight(frame.clientHeight);
@@ -20,21 +20,21 @@
 
   resizeCanvas();
 
-  var drawingModeEl = $('drawing-mode'),
-      drawingOptionsEl = $('drawing-mode-options'),
-      drawingColorEl = $('drawing-color'),
-      drawingShadowColorEl = $('drawing-shadow-color'),
-      drawingLineWidthEl = $('drawing-line-width'),
-      drawingShadowWidth = $('drawing-shadow-width'),
-      drawingShadowOffset = $('drawing-shadow-offset'),
-      clearEl = $('clear'),
-      save = $('save');
+  var drawingModeEl = _('drawing-mode'),
+      drawingOptionsEl = _('drawing-mode-options'),
+      drawingColorEl = _('drawing-color'),
+      drawingShadowColorEl = _('drawing-shadow-color'),
+      drawingLineWidthEl = _('drawing-line-width'),
+      drawingShadowWidth = _('drawing-shadow-width'),
+      drawingShadowOffset = _('drawing-shadow-offset'),
+      clearEl = _('clear'),
+      save = _('save');
 
 
   clearEl.onclick = function() { canvas.clear() };
   save.onclick = function convertToImagen() {
     save.setAttribute('disabled', true);
-    const close = $('close');
+    const close = _('close');
 
 
     const curtain = document.getElementById('curtain');
@@ -42,6 +42,7 @@
     const anDur = 500;
     const restartCanvas = () => {
       close.onclick = () => {
+        
         anTimer('out');
         return setTimeout(() => {
           curtain.classList.remove("anim");
@@ -168,7 +169,7 @@
     // texturePatternBrush.source = img;
   }
 
-  // $('drawing-mode-selector').onchange = function() {
+  // _('drawing-mode-selector').onchange = function() {
   //
   //   if (this.value === 'hline') {
   //     canvas.freeDrawingBrush = vLinePatternBrush;
