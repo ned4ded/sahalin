@@ -1,8 +1,8 @@
 .login {
   position: absolute;
-  top: 25%;
+  top: 15%;
   left: 50%;
-  transform: translate(-50%, -25%);
+  transform: translateX(-50%);
   height: auto;
   text-align: center;
 
@@ -80,5 +80,10 @@
     font-size: $sm-fz;
     font-family: $font-roboto;
     color: $text-color-dimed;
+
+    & span {
+      color: $text-color;
+      font-weight: 600;
+    }
   }
 }

@@ -5,8 +5,11 @@ const credentials = require('./config/credentials');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const passport = require('passport');
+const ensureLogin = require('connect-ensure-login');
 const Store = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
+const flash = require('connect-flash');
 
 //DB setup
 const mongoose = require('mongoose');
@@ -44,8 +47,12 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   secret: credentials.cookieSecret,
-  store: new Store({ mongooseConnection: mongoose.connection }),
+  // cookie: { secure: true },
+  // store: new Store({ mongooseConnection: mongoose.connection }),
 }));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //server setup
 app.set('port', process.env.PORT || '3000');
@@ -53,11 +60,17 @@ app.set('host', '192.168.1.130');
 app.use(express.static(path.join(__dirname, 'www')));
 
 // routes
-const index = require('./routes/index');
-const login = require('./routes/login');
+const isLoggedIn = (req, res, next) => ensureLogin.ensureLoggedIn('/login')(req, res, next);
 
-app.use('/', index);
+const index = require('./routes/index');
+const home = require('./routes/home');
+const login = require('./routes/login');
+const logout = require('./routes/logout');
+
 app.use('/login', login);
+app.use('/', isLoggedIn, index);
+app.use('/home', isLoggedIn, home);
+app.use('/logout', isLoggedIn, logout);
 
 
 app.use((req, res) => {

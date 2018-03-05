@@ -12,11 +12,13 @@ body {
 @import './block/popup.scss';
 @import './block/display.scss';
 
-@import 'pages/index/base.scss';
 @import 'pages/login/base.scss';
+@import 'pages/index/base.scss';
+@import 'pages/home/base.scss';
 
 .interface {
   position: relative;
+  z-index: 0;
 
   overflow: hidden;
   width: 100vw;

@@ -3,7 +3,7 @@
     <form class="block" action="login/" method="POST">
 
       <div class="login__group">
-        <input id="login" type="text" class="login__input" name="login" required>
+        <input id="login" type="text" class="login__input" name="username" required>
         <label for="login" class="login__label">Логин</label>
       </div>
 
@@ -12,26 +12,18 @@
         <label for="password" class="login__label">Пароль</label>
       </div>
 
-      <button class="btn block__btn login__submit" type="submit">Вход</button>
+      <input class="btn block__btn login__submit" type="submit" value="Вход" />
     </form>
 
-    <ul class="login__display display">
-      <li class="display__item">
-        <a href="#" class="display__link">
-          <img src="http://via.placeholder.com/150x150/373750" alt="Фото экрана" class="display__photo">
-          <p class="display__text">Интерактивный экран</p>
-        </a>
-      </li>
-
-      <li class="display__item">
-        <a href="#" class="display__link">
-          <img src="http://via.placeholder.com/150x150/373750" alt="Фото экрана" class="display__photo">
-          <p class="display__text">Демонстрационный экран</p>
-        </a>
-      </li>
-    </ul>
-
     <p class="login__message">Пройдите аутентификацию для доступа к клиентской части приложения.</p>
+
+    {{#if error }}
+    <p class="login__message">
+      <span>Ошибка!</span>
+      {{ error }}
+    </p>
+    {{/if}}
+
   </div>
 
 </div>
