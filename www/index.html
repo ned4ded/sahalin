@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body class="interface">
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <ul class="dashboard interface__item">
+          <li class="dashboard__item">
+            <button id="clear" class="dashboard__btn">Очистить</button>
+            <svg class="dashboard__icon">
+              <use href="assets/sprite.svg#icon-clear" />
+            </svg>
+          </li>
+          <li class="dashboard__item">
+            <button class="dashboard__btn" disabled>Назад</button>
+            <svg class="dashboard__icon">
+              <use href="assets/sprite.svg#icon-back" />
+            </svg>
+          </li>
+          <li class="dashboard__item">
+            <button id="save" class="dashboard__btn">Сохранить</button>
+            <svg class="dashboard__icon">
+              <use href="assets/sprite.svg#icon-save" />
+            </svg>
+          </li>
+        </ul>
+
+        <div id="frame" class="frame interface__item">
+          <div id="curtain" class="frame__curtain"></div>
+          <div id="popup" class="block popup frame__popup" data-shown="false">
+            <span class="block__heading">
+              Отлично!
+            </span>
+            <p class="block__message">
+              Изображение успешно сохранено. Нажмите "ОК" чтобы продолжить.
+            </p>
+            <button id="close" class="btn block__btn">ОК</button>
+          </div>
+          <canvas id="canvas" class="canvas"></canvas>
+        </div>
+
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.0.1/fabric.min.js"></script>
+        <script>(typeof fabric) == 'object' || document.write('<script src="js/vendor/fabric.min.js"><\/script>')</script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
