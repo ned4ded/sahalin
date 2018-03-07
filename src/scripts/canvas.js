@@ -1,9 +1,39 @@
 (function() {
+  console.log('canvas.js');
   var _ = function(id){return document.getElementById(id)};
 
   var canvas = new fabric.Canvas('canvas', {
     isDrawingMode: true
   });
+
+  function saveCanvas() {
+    const json = JSON.stringify( canvas.toJSON() );
+    const png = canvas.toDataURL('png');
+    const msgBox = _('msgBox');
+
+    $.post(
+      '/create',
+      {
+        fabricObject: json,
+        dataUri: png,
+        beforeSend: function() {
+          msgBox.innerHTML = 'Изображение обрабатывается';
+        }
+      },
+      'json'
+    ).done(function(data) {
+          console.log(data);
+          console.log('successfully sended');
+          msgBox.innerHTML = 'Изображение успешно сохранено. Нажмите "ОК" чтобы продолжить.'
+        })
+      .fail(function(jqxhr, textStatus, err) {
+        msgBox.innerHTML = 'Произошла ошибка на стороне клиента. Попробуйте повторить действие.'
+        console.log('failure');
+        console.log(jqxhr);
+        console.log(textStatus);
+        console.log(err);
+      });
+  }
 
   fabric.Object.prototype.transparentCorners = false;
 
@@ -11,29 +41,42 @@
 
   const frame = _('frame');
   const popup = _('popup');
+  const load = _('load');
 
-  function resizeCanvas() {
-    canvas.setHeight(frame.clientHeight);
-    canvas.setWidth(frame.clientWidth);
-    canvas.renderAll();
+  load.onclick = function(ev) {
+    ev.preventDefault();
+
+    $.get({
+      url: '/render',
+      dataType: 'json'
+    }).done(function(data) {
+      canvas.loadFromJSON(data, canvas.renderAll.bind(canvas));
+    });
   }
 
-  resizeCanvas();
+  // function resizeCanvas() {
+  //   canvas.setHeight(frame.clientHeight);
+  //   canvas.setWidth(frame.clientWidth);
+  //   canvas.renderAll();
+  // }
+  //
+  // resizeCanvas();
 
   var drawingModeEl = _('drawing-mode'),
-      drawingOptionsEl = _('drawing-mode-options'),
-      drawingColorEl = _('drawing-color'),
-      drawingShadowColorEl = _('drawing-shadow-color'),
-      drawingLineWidthEl = _('drawing-line-width'),
-      drawingShadowWidth = _('drawing-shadow-width'),
-      drawingShadowOffset = _('drawing-shadow-offset'),
-      clearEl = _('clear'),
+      // drawingOptionsEl = _('drawing-mode-options'),
+      // drawingColorEl = _('drawing-color'),
+      // drawingShadowColorEl = _('drawing-shadow-color'),
+      // drawingLineWidthEl = _('drawing-line-width'),
+      // drawingShadowWidth = _('drawing-shadow-width'),
+      // drawingShadowOffset = _('drawing-shadow-offset'),
+      // clearEl = _('clear'),
       save = _('save');
 
 
-  clearEl.onclick = function() { canvas.clear() };
+  // clearEl.onclick = function() { canvas.clear() };
   save.onclick = function convertToImagen() {
     save.setAttribute('disabled', true);
+    saveCanvas();
     const close = _('close');
 
 
@@ -42,7 +85,7 @@
     const anDur = 500;
     const restartCanvas = () => {
       close.onclick = () => {
-        
+
         anTimer('out');
         return setTimeout(() => {
           curtain.classList.remove("anim");
@@ -66,7 +109,7 @@
 
     curtain.classList.add("anim");
     anTimer('in');
-    setTimeout(() => window.open(canvas.toDataURL('png')), anDur);
+    // setTimeout(() => window.open(canvas.toDataURL('png')), anDur);
 
     restartCanvas();
 
@@ -87,24 +130,24 @@
   //   }
   // };
 
-  if (fabric.PatternBrush) {
-    var vLinePatternBrush = new fabric.PatternBrush(canvas);
-    vLinePatternBrush.getPatternSrc = function() {
-
-      var patternCanvas = fabric.document.createElement('canvas');
-      patternCanvas.width = patternCanvas.height = 10;
-      var ctx = patternCanvas.getContext('2d');
-
-      ctx.strokeStyle = this.color;
-      ctx.lineWidth = 5;
-      ctx.beginPath();
-      ctx.moveTo(0, 5);
-      ctx.lineTo(10, 5);
-      ctx.closePath();
-      ctx.stroke();
-
-      return patternCanvas;
-    };
+  // if (fabric.PatternBrush) {
+  //   var vLinePatternBrush = new fabric.PatternBrush(canvas);
+  //   vLinePatternBrush.getPatternSrc = function() {
+  //
+  //     var patternCanvas = fabric.document.createElement('canvas');
+  //     patternCanvas.width = patternCanvas.height = 10;
+  //     var ctx = patternCanvas.getContext('2d');
+  //
+  //     ctx.strokeStyle = this.color;
+  //     ctx.lineWidth = 5;
+  //     ctx.beginPath();
+  //     ctx.moveTo(0, 5);
+  //     ctx.lineTo(10, 5);
+  //     ctx.closePath();
+  //     ctx.stroke();
+  //
+  //     return patternCanvas;
+  //   };
 
     // var hLinePatternBrush = new fabric.PatternBrush(canvas);
     // hLinePatternBrush.getPatternSrc = function() {
@@ -167,7 +210,7 @@
     //
     // var texturePatternBrush = new fabric.PatternBrush(canvas);
     // texturePatternBrush.source = img;
-  }
+  // }
 
   // _('drawing-mode-selector').onchange = function() {
   //
@@ -224,14 +267,7 @@
   // };
 
   if (canvas.freeDrawingBrush) {
-    canvas.freeDrawingBrush.color = '#000000';
+    canvas.freeDrawingBrush.color = '#555555';
     canvas.freeDrawingBrush.width = parseInt(10, 10) || 1;
-    canvas.freeDrawingBrush.shadow = new fabric.Shadow({
-      blur: parseInt(0, 10) || 0,
-      offsetX: 0,
-      offsetY: 0,
-      affectStroke: true,
-      color: '#005E7A',
-    });
   }
-})();
+});

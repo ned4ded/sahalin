@@ -183,40 +183,12 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    display: none;
-    z-index: 1; }
-
-@-webkit-keyframes in {
-  from {
-    width: 0; }
-  to {
-    width: 100%; } }
-
-@keyframes in {
-  from {
-    width: 0; }
-  to {
-    width: 100%; } }
-    .frame__curtain.anim {
-      display: block;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle farthest-corner at 30% 70%, rgba(76, 76, 128, 0.9), rgba(31, 35, 60, 0.9)); }
-      .frame__curtain.anim.in {
-        -webkit-animation-name: in;
-                animation-name: in;
-        -webkit-animation-duration: .5s;
-                animation-duration: .5s;
-        -webkit-animation-fill-mode: forwards;
-                animation-fill-mode: forwards; }
-      .frame__curtain.anim.out {
-        -webkit-animation-name: in;
-                animation-name: in;
-        -webkit-animation-duration: .5s;
-                animation-duration: .5s;
-        -webkit-animation-fill-mode: forwards;
-                animation-fill-mode: forwards;
-        animation-direction: reverse; }
+    z-index: 1;
+    background: radial-gradient(circle farthest-corner at 30% 70%, rgba(76, 76, 128, 0.9), rgba(31, 35, 60, 0.9));
+    width: 0;
+    height: 100%; }
+    .frame__curtain.shown {
+      width: 100%; }
   .frame__popup {
     display: none;
     position: absolute;
@@ -225,35 +197,9 @@ body {
     -webkit-transform: translate(-50%, -25%);
             transform: translate(-50%, -25%);
     z-index: 2;
-    opacity: 1; }
-
-@-webkit-keyframes appearance {
-  0% {
-    display: none;
     opacity: 0; }
-  1% {
-    display: block;
-    opacity: 0; }
-  100% {
-    display: block;
-    opacity: 1; } }
-
-@keyframes appearance {
-  0% {
-    display: none;
-    opacity: 0; }
-  1% {
-    display: block;
-    opacity: 0; }
-  100% {
-    display: block;
-    opacity: 1; } }
-    .frame__popup[data-shown="true"] {
-      display: block;
-      -webkit-animation-name: appearance;
-              animation-name: appearance;
-      -webkit-animation-duration: .5s;
-              animation-duration: .5s; }
+    .frame__popup.shown {
+      opacity: 1; }
 
 .dashboard {
   display: -webkit-box;
@@ -263,7 +209,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
-  min-width: 80px;
+  width: 100px;
   height: 100%;
   margin: 0;
   padding: 0;

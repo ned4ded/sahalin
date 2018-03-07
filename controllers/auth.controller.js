@@ -40,7 +40,7 @@ exports.auth_login = (req, res, next) => {
 
 exports.auth_process = function(req, res, next) {
   return passport.authenticate('local', {
-    successReturnToOrRedirect: '/',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
   })(req, res, next);

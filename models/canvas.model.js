@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const CanvasSchema = new Schema({
   confirmed: Boolean,
-  fabricObject: [],
-  dataUri: String,
+  fabricObject: {},
+  filePath: String,
   created: {
         type: Date,
         default: Date.now

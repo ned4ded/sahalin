@@ -20,18 +20,21 @@
 
     </li>
     <li class="dashboard__item">
-      <a id="save" href="/logout" class="dashboard__btn">Выход</a>
+      <a id="load" href="/render" class="dashboard__btn">Загрузить последнее изображение</a>
+    </li>
+    <li class="dashboard__item">
+      <a href="/logout" class="dashboard__btn">Выход</a>
     </li>
   </ul>
 
   <div id="frame" class="frame interface__item">
     <div id="curtain" class="frame__curtain"></div>
     <div id="popup" class="block popup frame__popup" data-shown="false">
-      <span class="block__heading">
-        Отлично!
+      <span id="msgHeading" class="block__heading">
       </span>
+      <p id="msgBox" class="block__message"></p>
       <p class="block__message">
-        Изображение успешно сохранено. Нажмите "ОК" чтобы продолжить.
+        <a href="" id="link"></a>
       </p>
       <button id="close" class="btn block__btn">ОК</button>
     </div>

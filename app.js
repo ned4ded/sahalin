@@ -47,8 +47,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   secret: credentials.cookieSecret,
-  // cookie: { secure: true },
-  // store: new Store({ mongooseConnection: mongoose.connection }),
+  store: new Store({ mongooseConnection: mongoose.connection }),
 }));
 app.use(flash());
 app.use(passport.initialize());
