@@ -46,7 +46,7 @@ app.use(cookieParser(credentials.secret.cookie));
 app.use(session({
   resave: false,
   saveUninitialized: false,
-  secret: credentials.cookieSecret,
+  secret: credentials.secret.cookie,
   store: new Store({ mongooseConnection: mongoose.connection }),
 }));
 app.use(flash());
