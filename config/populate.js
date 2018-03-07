@@ -1,7 +1,8 @@
-const User = require('../models/user.model');
+const user = require('../models/user.logic');
+const credentials = require('./credentials');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/sahalin', function (err) {
+mongoose.connect(credentials.server.db, function (err) {
    if (err) throw err;
    console.log('DB Successfully connected');
 });
@@ -14,6 +15,7 @@ const userData = {
   password: 'admin'
 }
 
-User.create(userData, (err, user) => {
-  if(err) console.log(err);
+user.create(userData, (err, user) => {
+  if(err) throw err;
+  db.close();
 });

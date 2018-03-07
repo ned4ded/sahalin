@@ -25,33 +25,18 @@ exports.canvas_upload = (req, res, next) => {
 
   form.encoding = 'utf-8';
 
-  form.keepExtensions = true;
-
   const staticFolder = '/uploads';
 
   form.uploadDir = __dirname + '/../www' + staticFolder;
 
   form.on('error', function(err) {
-        throw err;
+        next(err);
     });
 
   form.on('fileBegin', function(field, file) {
     id = field;
     path = staticFolder + '/' + field + '.png';
     file.path = form.uploadDir + "/" + field + '.png';
-  });
-
-  form.on('progress', function(res, exp) {
-    console.log('resieved: ' + res);
-    console.log('expected: ' + exp + '\n');
-  });
-
-  form.on('aborted', function() {
-
-  });
-
-  form.parse(req, function(err, fields, files) {
-    // res.send(util.inspect({fields: fields, files: files}));
   });
 
   form.on('end', function() {
@@ -62,7 +47,6 @@ exports.canvas_upload = (req, res, next) => {
     };
 
     canvas_update(id, { filePath: path }, callback);
-
   });
 }
 

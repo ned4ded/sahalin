@@ -13,7 +13,7 @@ const flash = require('connect-flash');
 
 //DB setup
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/sahalin', function (err) {
+mongoose.connect(credentials.server.db, function (err) {
    if (err) throw err;
    console.log('DB Successfully connected');
 });
@@ -42,7 +42,7 @@ app.set('views', path.join(__dirname, 'views'));
 //middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser(credentials.cookieSecret));
+app.use(cookieParser(credentials.secret.cookie));
 app.use(session({
   resave: false,
   saveUninitialized: false,
@@ -54,8 +54,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //server setup
-app.set('port', process.env.PORT || '3000');
-app.set('host', '192.168.1.130');
+app.set('port', process.env.PORT || credentials.server.port);
+app.set('host', credentials.server.host);
 app.use(express.static(path.join(__dirname, 'www')));
 
 // routes
