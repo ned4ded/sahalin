@@ -1,4 +1,4 @@
 node_modules
 config/credentials.js
-www/uploads/*
-!www/uploads
+www/uploads/*/**
+!www/uploads/placeholder
