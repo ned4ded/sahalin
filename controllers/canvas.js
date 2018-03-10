@@ -154,3 +154,19 @@ exports.canvas_get_confirmed = (cb) => {
 
   canvas.getAllConfirmed(callback);
 }
+
+exports.canvas_get_next_presentation_link = (cb, id) => {
+  const callback = (err, list) => {
+    if(err) return cb(err);
+
+    if(id) {
+      const i = list.findIndex(e => e.id.toString() === id);
+
+      return cb(null, (i === -1 || (!list[i + 1])) ? list[0] : list[i + 1]);
+    }
+
+    return cb(null, list[0]);
+  };
+
+  canvas.getAllConfirmed(callback);
+}

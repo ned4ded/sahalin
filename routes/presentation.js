@@ -16,4 +16,26 @@ router.get('/confirmed', (req, res) => {
   canvas_controller.canvas_get_confirmed(callback)
 });
 
+router.post('/next/:id', (req, res) => {
+  const id = req.params.id;
+
+  const callback = (err, el) => {
+    if(err) return next(err);
+
+    res.json(el);
+  }
+
+  canvas_controller.canvas_get_next_presentation_link(callback, id)
+});
+
+router.post('/next', (req, res) => {
+  const callback = (err, el) => {
+    if(err) return next(err);
+
+    res.json(el);
+  }
+
+  canvas_controller.canvas_get_next_presentation_link(callback);
+});
+
 module.exports = router;

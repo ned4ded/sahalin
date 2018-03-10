@@ -11,6 +11,7 @@ const els = {
   popup: document.getElementById('popup'),
   load: document.getElementById('load'),
   clear: document.getElementById('clear'),
+  undo: document.getElementById('undo'),
   save: document.getElementById('save'),
   popupClose:  document.getElementById('close'),
   frameCurtain:  document.getElementById('curtain'),
@@ -38,6 +39,10 @@ const els = {
     clear: () => easel.clear(),
     save: () => easel.save(addMsg),
     load: () => easel.renderLast(),
+    undo: (cb) => easel.renderLastState(cb),
+    hasHistory: () => easel.hasHistory(),
+    listenState: (cb) => easel.listenState(cb),
+    clearHistory: () => easel.clearHistory(),
   }
 
 
@@ -50,7 +55,7 @@ const els = {
   $( els.save ).click( () => animateCurtain({
     forward: {
       before: ableSaveBtn,
-      after: [showPopup, handlers.save],
+      after: [showPopup, handlers.save, handlers.clearHistory],
     },
     reverse: {
       before: showPopup,
@@ -71,6 +76,18 @@ const els = {
     ev.preventDefault();
     handlers.load();
   });
+
+  const historyCallback = () => {
+    if(!handlers.hasHistory()) {
+      els.undo.setAttribute('disabled', true);
+    } else {
+      els.undo.removeAttribute('disabled');
+    }
+  }
+
+  handlers.listenState(historyCallback);
+
+  $( els.undo ).click( () => handlers.undo(historyCallback) );
 
 
 })();

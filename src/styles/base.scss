@@ -8,16 +8,6 @@ body {
     box-sizing: border-box;
   }
 }
-@import './block/block.scss';
-@import './block/popup.scss';
-@import './block/display.scss';
-@import './block/gallery.scss';
-
-@import 'pages/login/base.scss';
-@import 'pages/index/base.scss';
-@import 'pages/home/base.scss';
-@import 'pages/moderate/base.scss';
-@import 'pages/presentation/base.scss';
 
 .interface {
   position: relative;
@@ -77,3 +67,14 @@ body {
     box-shadow: 0 0 10px -3px rgba($main-color-dark, .7);
   }
 }
+
+@import './block/block.scss';
+@import './block/popup.scss';
+@import './block/display.scss';
+@import './block/gallery.scss';
+
+@import 'pages/login/base.scss';
+@import 'pages/index/base.scss';
+@import 'pages/home/base.scss';
+@import 'pages/moderate/base.scss';
+@import 'pages/presentation/base.scss';

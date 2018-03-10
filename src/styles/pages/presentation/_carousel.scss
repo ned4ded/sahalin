@@ -4,13 +4,46 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  position: relative;
 
   &__item {
+    position: absolute;
     width: 100%;
     height: 100%;
+    top: 0;
     background-color: white;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  @keyframes slide-from-right {
+    from { left: 100% }
+    to { left: 0; }
+  }
+
+  @keyframes slide-to-left {
+    from { left: 0; }
+    to { left: -100%; }
+  }
+
+  & #carousel-current {
+    left: 0;
+
+    &.animate {
+      animation-name: slide-to-left;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  & #carousel-next {
+    left: 100%;
+
+    &.animate {
+      animation-name: slide-from-right;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+    }
   }
 }
