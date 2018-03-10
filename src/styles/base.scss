@@ -11,10 +11,13 @@ body {
 @import './block/block.scss';
 @import './block/popup.scss';
 @import './block/display.scss';
+@import './block/gallery.scss';
 
 @import 'pages/login/base.scss';
 @import 'pages/index/base.scss';
 @import 'pages/home/base.scss';
+@import 'pages/moderate/base.scss';
+@import 'pages/presentation/base.scss';
 
 .interface {
   position: relative;
@@ -28,6 +31,13 @@ body {
   display: flex;
   flex-flow:row;
   background: $main-color-light linear-gradient(135deg, $main-color-light 0%, $main-color-dark 100%) no-repeat;
+
+  &--scroll {
+    max-width: 100%;
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
+  }
 
   &__item {
     margin-left: 10px;

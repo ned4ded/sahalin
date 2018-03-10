@@ -1,4 +1,4 @@
-const User = require('../models/user.model');
+const User = require('../models/user.schema');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
@@ -40,7 +40,7 @@ exports.auth_login = (req, res, next) => {
 
 exports.auth_process = function(req, res, next) {
   return passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/home',
     failureRedirect: '/login',
     failureFlash: true
   })(req, res, next);

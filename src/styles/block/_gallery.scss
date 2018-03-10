@@ -1,0 +1,47 @@
+.gallery {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  min-width: 1000px;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0;
+  list-style: none;
+
+
+  &__item {
+    width: 30%;
+    max-width: 500px;
+    padding: 10px 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: 2px solid $semi-color-light;
+    background-color: $main-color-dark;
+
+    &:nth-of-type(n + 4) {
+      margin-top: 30px;
+    }
+  }
+
+  &__img {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: white;
+    width: 100%;
+    height: auto;
+  }
+
+  &__text {
+    width: 100%;
+    display: block;
+    text-align: center;
+    color: $text-color;
+    font-family: $font-roboto;
+  }
+
+  &__btn {
+    margin-top: 15px;
+    text-decoration: none;
+  }
+}

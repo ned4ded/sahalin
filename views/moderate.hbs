@@ -1,0 +1,58 @@
+<div class="interface interface--scroll moderate">
+
+  <ul class="dashboard interface__item">
+    <li class="dashboard__item">
+      <a href="/home" class="dashboard__btn">Домой</a>
+    </li>
+
+    <li class="dashboard__item">
+      <a href="/" class="dashboard__btn">Интерактивный экран</a>
+    </li>
+
+    {{#if all}}
+      <li class="dashboard__item">
+        <a href="/moderate" class="dashboard__btn">Показать только неподтвержденные</a>
+      </li>
+    {{else}}
+      <li class="dashboard__item">
+        <a href="/moderate?confirmed=true" class="dashboard__btn">Показать все</a>
+      </li>
+    {{/if}}
+
+    <li class="dashboard__item">
+      <a href="/logout" class="dashboard__btn">Выход</a>
+    </li>
+  </ul>
+
+  <div class="interface__item">
+    {{#if canvas }}
+      <ul class="gallery">
+        {{#each canvas }}
+          <li class="gallery__item" data-id="{{this.id}}">
+            <img class="gallery__img" src="{{this.path}}" />
+            <span class="gallery__text gallery__id">
+              Идентификатор: {{this.id}};
+            </span>
+            <span class="gallery__text gallery__date">
+              Дата создания: {{this.created}};
+            </span>
+            {{#if this.confirmed}}
+              <a class="btn gallery__btn gallery__btn--delete" href="/moderate/unconfirm/{{this.id}}">
+                Отозвать
+              </a>
+            {{else}}
+              <a class="btn gallery__btn" href="/moderate/confirm/{{this.id}}">
+                Подтвердить
+              </a>
+            {{/if}}
+          </li>
+        {{/each }}
+      </ul>
+
+      {{else}}
+        <p class="gallery__text">
+          Изображения не найдены.
+        </p>
+      {{/if }}
+  </div>
+</div>

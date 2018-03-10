@@ -356,6 +356,50 @@ function showPopup() {
     canvas.freeDrawingBrush.width = parseInt(10, 10) || 1;
   }
 });
+'use strict';
+
+function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
+
+var getImgs = function getImgs() {
+  return $.get('/presentation/confirmed', 'json').done(function (data) {
+    carousel(data);
+  });
+};
+
+var carousel = function carousel(data) {
+  if (!data || !data.length) return;
+
+  var rec = function rec(arr) {
+    var _arr = _toArray(arr),
+        cur = _arr[0],
+        rest = _arr.slice(1);
+
+    if (!cur) return rec(data);
+    var path = cur.path;
+
+    var el = document.getElementById('carousel');
+
+    var attr = "background-image: url('" + path + "')";
+
+    el.setAttribute('style', attr);
+
+    setTimeout(function () {
+      rec(rest);
+    }, 5000);
+  };
+
+  rec(data);
+};
+
+getImgs();
+'use strict';
+
+var errHandler = function errHandler(err) {
+  var errHeading = err.status + ': ' + err.statusText;
+  var errContent = err.responseText;
+
+  return console.log(errHeading + ' ' + errContent);
+};
 // (function{
 //   const
 // }())
@@ -425,12 +469,13 @@ var Easel = function () {
           processData: false,
           contentType: false
         }).done(function (data) {
-          var url = data.path;
-          var href = document.getElementById('link');
-          href.setAttribute('href', url);
-          href.setAttribute('target', '_blank');
-          $(href).text('Ссфлка на картинку');
-          $('#msgBox').after($(href));
+          console.log(data);
+          // const url = data.path;
+          // const href = document.getElementById('link');
+          // href.setAttribute('href', url);
+          // href.setAttribute('target', '_blank');
+          // $(href).text('Ссфлка на картинку');
+          // $('#msgBox').after( $(href) );
         });
       }, 'image/png');
     }
@@ -443,7 +488,10 @@ var Easel = function () {
         url: '/render',
         dataType: 'json'
       }).done(function (data) {
+        console.log(data);
         _this2.canvas.loadFromJSON(data, _this2.canvas.renderAll.bind(_this2.canvas));
+      }).fail(function (err) {
+        return errHandler(err);
       });
     }
   }, {

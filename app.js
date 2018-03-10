@@ -65,11 +65,15 @@ const index = require('./routes/index');
 const home = require('./routes/home');
 const login = require('./routes/login');
 const logout = require('./routes/logout');
+const moderate = require('./routes/moderate');
+const presentation = require('./routes/presentation');
 
 app.use('/login', login);
 app.use('/', isLoggedIn, index);
 app.use('/home', isLoggedIn, home);
 app.use('/logout', isLoggedIn, logout);
+app.use('/moderate', isLoggedIn, moderate);
+app.use('/presentation', isLoggedIn, presentation);
 
 
 app.use((req, res) => {
@@ -77,7 +81,8 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).send(err.stack);
+  console.log(err.stack)
+  res.status(500).send(err.message);
 });
 
 app.listen(app.get('port'), app.get('host'), () => {

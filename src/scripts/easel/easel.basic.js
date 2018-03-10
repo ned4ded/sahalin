@@ -55,12 +55,13 @@ class Easel {
         processData: false,
         contentType: false,
       }).done((data) => {
-        const url = data.path;
-        const href = document.getElementById('link');
-        href.setAttribute('href', url);
-        href.setAttribute('target', '_blank');
-        $(href).text('Ссфлка на картинку');
-        $('#msgBox').after( $(href) );
+        console.log(data);
+        // const url = data.path;
+        // const href = document.getElementById('link');
+        // href.setAttribute('href', url);
+        // href.setAttribute('target', '_blank');
+        // $(href).text('Ссфлка на картинку');
+        // $('#msgBox').after( $(href) );
       });
     }, 'image/png');
   }
@@ -70,8 +71,9 @@ class Easel {
       url: '/render',
       dataType: 'json'
     }).done((data) => {
+      console.log(data);
       this.canvas.loadFromJSON(data, this.canvas.renderAll.bind(this.canvas));
-    });
+    }).fail(err => errHandler(err));
   }
 
   resize(h, w) {
