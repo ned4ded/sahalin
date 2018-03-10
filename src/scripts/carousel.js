@@ -50,9 +50,6 @@ class Presentation {
       updatePath(cur, curEl);
       updatePath(next, nextEl);
 
-      // curEl.classList.remove('animate');
-      // nextEl.classList.remove('animate');
-
       curEl.classList.add('animate');
       nextEl.classList.add('animate');
 

@@ -17,11 +17,19 @@ class Easel {
     this.listenState(() => {
       this.saveState();
     });
+
+    this.listenMouse(() => {
+      if(!this.hasHistory()) {
+        return this.saveState();
+      }
+    });
   }
 
 
   clear() {
     this.canvas.clear();
+
+    this.clearHistory();
   }
 
   save(callback) {
@@ -163,5 +171,9 @@ class Easel {
 
   listenState(cb) {
     this.canvas.on('path:created', cb);
+  }
+
+  listenMouse(cb) {
+    this.canvas.on('mouse:down', cb);
   }
 }

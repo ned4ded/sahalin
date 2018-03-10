@@ -433,9 +433,6 @@ var Presentation = function () {
         updatePath(cur, curEl);
         updatePath(next, nextEl);
 
-        // curEl.classList.remove('animate');
-        // nextEl.classList.remove('animate');
-
         curEl.classList.add('animate');
         nextEl.classList.add('animate');
 
@@ -517,12 +514,20 @@ var Easel = function () {
     this.listenState(function () {
       _this.saveState();
     });
+
+    this.listenMouse(function () {
+      if (!_this.hasHistory()) {
+        return _this.saveState();
+      }
+    });
   }
 
   _createClass(Easel, [{
     key: 'clear',
     value: function clear() {
       this.canvas.clear();
+
+      this.clearHistory();
     }
   }, {
     key: 'save',
@@ -681,6 +686,11 @@ var Easel = function () {
     key: 'listenState',
     value: function listenState(cb) {
       this.canvas.on('path:created', cb);
+    }
+  }, {
+    key: 'listenMouse',
+    value: function listenMouse(cb) {
+      this.canvas.on('mouse:down', cb);
     }
   }]);
 
