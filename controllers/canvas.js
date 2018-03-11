@@ -91,35 +91,19 @@ exports.canvas_upload = (req, res, next) => {
   });
 }
 
-exports.canvas_send = (req, res, next) => {
-  return canvas.findLastCreated((err, instance) => {
-    if(err) return next(err);
-    if(!instance) return next(new Error(msgs.instanceNull));
-
-    return canvas.getFabricObject(instance, (err, fabricObject) => {
-      if(err) return next(err);
-
-      return res.json(fabricObject);
-    });
-  });
-}
-
 exports.canvas_index = (req, res) => {
   res.render('index.hbs');
 }
 
 exports.canvas_delete = (req, res, next) => {
   const id = req.params.id;
+  const referer = req.get('Referrer');
+
 
   const callback = (err, id) => {
-    if(err) {
-      return next(err);
-    }
+    if(err) return next(err);
 
-    res.status(200).send({
-      message: id ? msgs.Delete : msgs.instanceNull,
-      id: id,
-    });
+    return res.redirect(referer);
   }
 
   canvas.removeById(id, callback);

@@ -76,6 +76,10 @@ class Presentation {
 
     rec(data);
   }
-}
+};
 
-new Presentation();
+(() => {
+  if(!document.getElementById('carousel')) return;
+
+  new Presentation();
+})();

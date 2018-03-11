@@ -17,16 +17,16 @@
     return callbacks();
   }
 
-  function ableSaveBtn()  {
-    if(els.save.hasAttribute('disabled')) {
-      els.save.removeAttribute('disabled');
+  function ableSaveBtn(el)  {
+    if(el.hasAttribute('disabled')) {
+      el.removeAttribute('disabled');
     } else {
-      els.save.setAttribute('disabled', true)
+      el.setAttribute('disabled', true)
     }
   };
 
-  function animateCurtain({ forward, reverse }) {
-    const frc = $( els.frameCurtain );
+  function animateCurtain(el, { forward, reverse }) {
+    const frc = $( el );
 
     if(frc.hasClass('shown')) {
       if(reverse && reverse.before) handleCallbacks(reverse.before);
@@ -49,8 +49,8 @@
     }
   }
 
-  function showPopup({ forward, reverse } = {}) {
-    const pu = $( els.popup );
+  function showPopup(el, { forward, reverse } = {}) {
+    const pu = $( el );
 
     if(pu.hasClass('shown')) {
       if(reverse && reverse.before) handleCallbacks(reverse.before);

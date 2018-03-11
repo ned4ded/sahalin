@@ -13,6 +13,4 @@ router.post('/upload', canvas_controller.canvas_upload);
 
 router.get('/delete/:id', canvas_controller.canvas_delete);
 
-router.get('/render', canvas_controller.canvas_send);
-
 module.exports = router;

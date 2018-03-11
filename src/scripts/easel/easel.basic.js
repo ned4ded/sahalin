@@ -7,6 +7,8 @@ class Easel {
       isDrawingMode: true
     });
 
+    this.element = document.getElementById(this.id);
+
     this.history = [];
 
     this.canvas.freeDrawingBrush.color = this.config.brushColor || '#000000';
@@ -25,74 +27,24 @@ class Easel {
     });
   }
 
-
   clear() {
     this.canvas.clear();
 
     this.clearHistory();
   }
 
-  save(callback) {
-    const json = JSON.stringify( this.canvas.toJSON() );
+  getBlob(cb, type) {
+    if(!cb) return;
 
-    $.post(
-      '/create',
-      {
-        fabricObject: json,
-        beforeSend: callback(null, 'Изображение обрабатывается'),
-      },
-      'json'
-    ).done((data) => {
-          callback(null, 'Изображение успешно отправлено, нажмите кнопку "ОК" для продолжения');
-          this.upload(data.id);
-        })
-      .fail(function(jqxhr, textStatus, err) {
-        console.log(jqxhr);
-        callback(`Произошла ошибка. Попробуйте повторить действие.
-          Status: ${err}`);
-      });
+    const t = type? type : 'image/png';
+    const el = this.element;
 
-
-  }
-
-  upload(name) {
-    const canvas = document.getElementById(this.id);
-
-    canvas.toBlob((blob) => {
-      const formdata = new FormData();
-      formdata.append(name, blob);
-
-      $.ajax({
-        url: '/upload',
-        type: 'post',
-        data: formdata,
-        processData: false,
-        contentType: false,
-      }).done((data) => {
-        console.log(data);
-        // const url = data.path;
-        // const href = document.getElementById('link');
-        // href.setAttribute('href', url);
-        // href.setAttribute('target', '_blank');
-        // $(href).text('Ссфлка на картинку');
-        // $('#msgBox').after( $(href) );
-      });
-    }, 'image/png');
-  }
-
-  renderLast() {
-    $.get({
-      url: '/render',
-      dataType: 'json'
-    }).done((data) => {
-      console.log(data);
-      this.renderFromJson(data);
-    }).fail(err => errHandler(err));
+    el.toBlob((blob) => {
+      return cb(blob);
+    }, t);
   }
 
   renderFromJson(data) {
-    // const d = data instanceof Object ? data : JSON.parse(data);
-    // console.log(d);
     return this.canvas.loadFromJSON(data, this.canvas.renderAll.bind(this.canvas));
   }
 
