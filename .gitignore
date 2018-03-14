@@ -2,4 +2,3 @@ node_modules
 config/credentials.js
 www/uploads/*
 !www/uploads/placeholder
-package-lock.json
