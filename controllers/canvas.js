@@ -7,7 +7,7 @@ exports.canvas_add = (req, res, next) => {
   const data = {
     fabricObject : req.body.fabricObject,
     filePath: '',
-    confirmed: false,
+    confirmed: true,
   }
 
   canvas.create(data, (err, id) => {

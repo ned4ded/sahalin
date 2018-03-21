@@ -3,6 +3,6 @@ exports.messages = {
   wrongLogin: 'Вы ввели неверный логин',
   instanceNull: 'Сущность не найдена',
   instanceDelete: 'Сущность успешно удалена',
-  InstanceUpdate: 'Сущность успешно обновлена',
-  InstanceСкуфеу: 'Сущность успешно создана',
+  instanceUpdate: 'Сущность успешно обновлена',
+  instanceCreate: 'Сущность успешно создана',
 }

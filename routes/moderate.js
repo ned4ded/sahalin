@@ -11,11 +11,13 @@ router.get('/', function(req, res, next) {
     res.render('moderate.hbs', { canvas: arr, all: isAll });
   }
 
-  if(isAll) {
-    canvas_controller.canvas_get_all(callback);
-  } else {
-    canvas_controller.canvas_get_unconfirmed(callback);
-  }
+  // if(isAll) {
+  //   canvas_controller.canvas_get_all(callback);
+  // } else {
+  //   canvas_controller.canvas_get_unconfirmed(callback);
+  // }
+
+  return canvas_controller.canvas_get_all(callback);
 });
 
 router.get('/confirm/:id', canvas_controller.canvas_confirm);
