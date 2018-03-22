@@ -67,6 +67,7 @@ const login = require('./routes/login');
 const logout = require('./routes/logout');
 const moderate = require('./routes/moderate');
 const presentation = require('./routes/presentation');
+const print = require('./routes/print');
 
 app.use('/login', login);
 app.use('/', isLoggedIn, index);
@@ -74,6 +75,7 @@ app.use('/home', isLoggedIn, home);
 app.use('/logout', isLoggedIn, logout);
 app.use('/moderate', isLoggedIn, moderate);
 app.use('/presentation', isLoggedIn, presentation);
+app.use('/print', isLoggedIn, print);
 
 
 app.use((req, res) => {

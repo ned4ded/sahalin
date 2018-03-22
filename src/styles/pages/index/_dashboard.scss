@@ -29,6 +29,8 @@
 
     font-size: $sm-fz;
     font-family: $font-roboto;
+    text-decoration: underline;
+    cursor: pointer;
 
     &:focus {
       outline: none;

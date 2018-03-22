@@ -31,6 +31,11 @@ body {
     overflow-y: auto;
     height: auto;
     min-height: 100vh; }
+  @media print {
+    .interface {
+      background-color: transparent; }
+      .interface .dashboard {
+        display: none; } }
   .interface__item {
     margin-left: 10px;
     margin-right: 10px; }
@@ -179,6 +184,28 @@ body {
     margin-top: 15px;
     text-decoration: none; }
 
+.printing {
+  position: relative;
+  height: calc(100% - 50px);
+  background-color: white;
+  width: 100%;
+  padding: 15px 15px; }
+  .printing img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%; }
+    @media print {
+      .printing img {
+        display: inherit;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        width: 100%;
+        height: auto; } }
+
 .login {
   position: absolute;
   top: 15%;
@@ -321,7 +348,9 @@ body {
     border: none;
     background-color: transparent;
     font-size: 16px;
-    font-family: "Roboto", "Arial", sans-serif; }
+    font-family: "Roboto", "Arial", sans-serif;
+    text-decoration: underline;
+    cursor: pointer; }
     .dashboard__btn:focus {
       outline: none; }
     .dashboard__btn:active:not(:disabled) {
@@ -363,6 +392,7 @@ body {
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
   width: 100%;
+  height: auto;
   padding-bottom: 25px;
   margin-bottom: 30px; }
   .moderate .dashboard__item:nth-of-type(n) {

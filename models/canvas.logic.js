@@ -45,7 +45,7 @@ const get = (querry, sort, callback) => {
 
 const getAllUnconfirmed = callback => get({ 'confirmed': false }, { 'created': 1 }, callback);
 const getAllConfirmed = callback => get({ 'confirmed': true }, { 'created': 1 }, callback);
-const getAll = callback => get({}, { 'created': 1 }, callback);
+const getAll = callback => get({}, { 'created': -1 }, callback);
 
 const update = (instance, data, callback) => {
   instance.set(data);
@@ -102,5 +102,5 @@ const getFabricObject = (instance, callback) => {
 }
 
 module.exports = {
-  create, update, getAndUpdate, findLast, findLastCreated, getAll, getAllConfirmed, getAllUnconfirmed, getFabricObject, removeById
+  create, update, getAndUpdate, getById, findLast, findLastCreated, getAll, getAllConfirmed, getAllUnconfirmed, getFabricObject, removeById
 }

@@ -29,6 +29,14 @@ body {
     min-height: 100vh;
   }
 
+  @media print {
+    background-color: transparent;
+
+    & .dashboard {
+      display: none;
+    }
+  }
+
   &__item {
     margin-left: 10px;
     margin-right: 10px;
@@ -72,6 +80,8 @@ body {
 @import './block/popup.scss';
 @import './block/display.scss';
 @import './block/gallery.scss';
+@import './block/printing.scss';
+
 
 @import 'pages/login/base.scss';
 @import 'pages/index/base.scss';

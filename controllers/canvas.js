@@ -30,6 +30,16 @@ exports.canvas_confirm = (req, res, next) => {
   canvas.getAndUpdate(id, { confirmed: true }, callback);
 }
 
+exports.canvas_get_by_id = (id, cb) => {
+  const callback = (err, list) => {
+    if(err) return cb(err);
+
+    return cb(null, list);
+  };
+
+  canvas.getById(id, callback);
+}
+
 exports.canvas_unconfirm = (req, res, next) => {
   const id = req.params.id;
   const referer = req.get('Referrer');

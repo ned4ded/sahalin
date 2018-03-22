@@ -1,0 +1,27 @@
+<div class="interface moderate">
+  <ul class="dashboard interface__item">
+    <li class="dashboard__item">
+      <a href="/home" class="dashboard__btn">Домой</a>
+    </li>
+
+    <li class="dashboard__item">
+      <a href="/" class="dashboard__btn">Интерактивный экран</a>
+    </li>
+
+    <li class="dashboard__item">
+      <a href="/logout" class="dashboard__btn">Выход</a>
+    </li>
+
+    <li class="dashboard__item">
+      <a href="{{referer}}" class="dashboard__btn">Назад</a>
+    </li>
+
+    <li class="dashboard__item">
+      <a class="dashboard__btn" id="print-btn">Повторить печать</a>
+    </li>
+  </ul>
+
+  <div id="printing" class="printing" data-print-on-load="true">
+    <img src="{{instance.filePath}}" alt="">
+  </div>
+</div>
